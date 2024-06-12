@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: ["ubuntu-latest", "windows-latest", "macOS-latest"]
+        python: ["3.12"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          poetry install
+
+      - name: Check types
+        run: |
+          poetry run mypy --config pyproject.toml .
+
+      - name: Lint codebase
+        run: |
+          poetry run ruff .
+
+      - name: Run tests
+        run: |
+          poetry run pytest
