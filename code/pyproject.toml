@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "src"
 version = "0.1.0"
-description = "Take-Home assignment: code"
+description = "Fashion Cloud Take-Home assignment: code"
 authors = ["Alena Konovalova <alena.kono@fastmail.com>"]
 readme = "README.md"
 
