@@ -186,7 +186,6 @@ The output will be a JSON representation of the consolidated catalog printed to 
 ```
 </details>
 
-
 ## Running tests
 
 ```bash
