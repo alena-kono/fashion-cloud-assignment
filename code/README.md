@@ -94,6 +94,7 @@ Check the last line in [mappings_bonus.csv](tests/data/input/mappings_bonus.csv)
 ## Prerequisites
 
 - `python3.12`
+- Tested on latest `MacOS` and `Ubuntu`.
 
 ## Installation
 
