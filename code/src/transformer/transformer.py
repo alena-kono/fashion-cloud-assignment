@@ -6,9 +6,8 @@ from src.extractor.reader import Row
 from src.transformer.exceptions import (
     MappingError,
     RowDoesNotContainFieldError,
+    MappingBuildError,
 )
-
-# TODO: Validate Row schema or CSV schema
 
 
 @dataclasses.dataclass(frozen=True)
@@ -36,7 +35,6 @@ class MappingUnit:
         )
 
 
-# TODO: move building mapping to extractor?
 class Mapping:
     """Hash-based class that uses combined key."""
 
@@ -47,8 +45,7 @@ class Mapping:
 
     def build(self, mapping_rows: tp.Iterable[Row]) -> None:
         if not mapping_rows:
-            # TODO: Raise custom error
-            raise ValueError("mappings should not be empty or None")
+            raise MappingBuildError("mapping_rows should not be empty or None")
 
         for row in mapping_rows:
             m = MappingUnit.from_row(row)
@@ -59,7 +56,8 @@ class Mapping:
             elif "|" in m.source.val:
                 self.composite_items[composite_key] = m
             else:
-                # TODO: Raise error if source type and source val already exist ?
+                # Consider raising error if source type and source val already exist,
+                # to notify user about ambiguous data in mappings.csv
                 self.direct_items[composite_key] = m
 
     def get(self, source_val: str, source_type: str) -> MappingUnit | None:

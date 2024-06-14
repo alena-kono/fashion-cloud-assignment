@@ -9,5 +9,9 @@ class MappingError(ApplicationError):
     message = "Mapping error"
 
 
+class MappingBuildError(MappingError):
+    message = "Mapping build error"
+
+
 class RowDoesNotContainFieldError(TransformerError):
     message = "Row does not contain field"
